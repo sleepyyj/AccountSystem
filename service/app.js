@@ -30,12 +30,12 @@ let app = express();
 
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
-    name: 'accountSession',
-    secret: 'account system',
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false, maxAge: 600000, httpOnly:false, secure:false },
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
+  name: 'accountSession',
+  secret: 'account system',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false, maxAge: 600000, httpOnly: false, secure: false },
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 app.use(compression());
 app.use(express.static(path.join(__dirname, '../dist')));
@@ -52,24 +52,24 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 if (app.get('env') === 'development') {
-    app.use(function (req, res, next) {
+  app.use(function (req, res, next) {
 
-        // Website you wish to allow to connect
-        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000');
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000');
 
-        // Request methods you wish to allow
-        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
-        // Request headers you wish to allow
-        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
-        // Set to true if you need the website to include cookies in the requests sent
-        // to the API (e.g. in case you use sessions)
-        res.setHeader('Access-Control-Allow-Credentials', true);
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
 
-        // Pass to next layer of middleware
-        next();
-    });
+    // Pass to next layer of middleware
+    next();
+  });
 }
 
 
@@ -91,7 +91,7 @@ if (app.get('env') === 'development') {
  }));
  })();*/
 
- //统一权限拦截
+//统一权限拦截
 app.use(routesAuth);
 app.use('/api/users', users);
 app.use('/api/orders', orders);
@@ -109,14 +109,14 @@ app.use('/system', system);
 app.use('/api/auth', auth);
 //确保react-router刷新正确路由
 app.get('*', function (request, response) {
-    response.sendFile(path.resolve(__dirname, '../dist', 'index.html'));
+  response.sendFile(path.resolve(__dirname, '../dist', 'index.html'));
 });
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    let err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  let err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 // error handlers
@@ -124,23 +124,23 @@ app.use(function (req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function (err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
+  app.use(function (err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
     });
+  });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
 });
 
 

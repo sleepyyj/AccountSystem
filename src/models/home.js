@@ -1,42 +1,42 @@
 export default {
 
-    namespace: 'home',
+  namespace: 'home',
 
-    state: {
-        activeIndex: 0,
-    },
+  state: {
+    activeIndex: 0,
+  },
 
-    subscriptions: {
-        setup({dispatch, history}) {
-            history.listen(location=> {
-                dispatch({
-                    type: 'updateActiveIndex',
-                    payload: location.pathname
-                });
-            });
-        },
+  subscriptions: {
+    setup({ dispatch, history }) {
+      history.listen(location => {
+        dispatch({
+          type: 'updateActiveIndex',
+          payload: location.pathname
+        });
+      });
     },
+  },
 
-    reducers: {
-        updateActiveIndex(state, action){
-            let pathname = action.payload;
-            let activeIndex = 0;
-            if (/orders/.test(pathname)) {
-                activeIndex = 1;
-            } else if (/storage/.test(pathname)) {
-                activeIndex = 2;
-            } else if (/stock/.test(pathname)) {
-                activeIndex = 3;
-            } else if (/funds/.test(pathname)) {
-                activeIndex = 4;
-            } else if (/manage/.test(pathname)) {
-                activeIndex = 5;
-            } else {
-                activeIndex = 0;
-            }
-            return {...state, activeIndex: activeIndex};
-        }
-    },
+  reducers: {
+    updateActiveIndex(state, action) {
+      let pathname = action.payload;
+      let activeIndex = 0;
+      if (/orders/.test(pathname)) {
+        activeIndex = 1;
+      } else if (/storage/.test(pathname)) {
+        activeIndex = 2;
+      } else if (/stock/.test(pathname)) {
+        activeIndex = 3;
+      } else if (/funds/.test(pathname)) {
+        activeIndex = 4;
+      } else if (/manage/.test(pathname)) {
+        activeIndex = 5;
+      } else {
+        activeIndex = 0;
+      }
+      return { ...state, activeIndex: activeIndex };
+    }
+  },
 
 }
 

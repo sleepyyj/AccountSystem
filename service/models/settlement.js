@@ -1,16 +1,16 @@
 /**
  * Created by wyf on 2017/1/13.
  */
-let mongoose =  require('mongoose');
+let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let settlementSchema = new Schema({
-    createInstance: Date,
-    userId: String,
-    userName: String,
-    settlementAmount: Number,
-	products: Array,
-	userId: String
+  createInstance: Date,
+  userId: String,
+  userName: String,
+  settlementAmount: Number,
+  products: Array,
+  userId: String
 });
 
 /**

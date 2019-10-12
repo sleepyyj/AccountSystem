@@ -1,13 +1,13 @@
-import React, {Component, PropTypes} from 'react';
-import {productTitle} from './index.css';
+import React, { Component, PropTypes } from 'react';
+import { productTitle } from './index.css';
 
-const ProductTitle = ({titleText}) => {
+const ProductTitle = ({ titleText }) => {
 
-    return (
-        <div className={productTitle}>
-            {titleText}
-        </div>
-    );
+  return (
+    <div className={productTitle}>
+      {titleText}
+    </div>
+  );
 };
 
 export default ProductTitle;

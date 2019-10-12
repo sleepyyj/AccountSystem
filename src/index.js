@@ -1,7 +1,7 @@
 import './index.html';
 import './index.less';
 import dva from 'dva';
-import {browserHistory} from 'dva/router';
+import { browserHistory } from 'dva/router';
 import router from './router';
 import home from './models/home';
 import orders from './models/orders';
@@ -18,7 +18,7 @@ import supplierBills from './models/supplierBills';
 
 // 1. Initialize
 const app = dva({
-	history: browserHistory
+  history: browserHistory
 });
 
 // 2. Plugins
