@@ -64,7 +64,15 @@ export default {
       yield put({ type: 'hideEditor' });
       yield put({ type: 'showLoading' });
       let product = payload;
-      product['productImg'] = product['productImg'] ? product['productImg'][0]['response'] : '';
+      let imgs = [];
+      if (product.productImg) {
+        for (const pd of product.productImg) {
+          imgs.push(pd.response);
+        }
+        product.productImg = imgs;
+      }
+      
+      // product['productImg'] = product['productImg'] ? product['productImg'][0]['response'] : '';
       const { data } = yield call(create, product);
       if (data && data.success) {
         yield put({

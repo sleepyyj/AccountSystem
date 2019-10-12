@@ -33,7 +33,7 @@ const ProductList = ({
     },
     {
       title: '商品图片',
-      dataIndex: 'productImg',
+      dataIndex: 'productImg[0]',
       key: 'productImg',
       render: (text, record, index) => {
         if (text) {
